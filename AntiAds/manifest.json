@@ -1,0 +1,41 @@
+{
+  "name":"Anti Ads", 
+  "version":"1.0", 
+  "manifest_version":2, 
+  "description":"remove advertisements on some specified websites", 
+  "browser_action":{ 
+    "default_icon":"icon_19_19.png",
+    "default_title":"My Anti Ads Plugin",
+    "default_popup":"popup.html"   
+
+  }, 
+  "permissions":[ 
+	"tabs",
+    "https://www.baidu.com/*",
+    "http://jinnianshilongnian.iteye.com/*",
+    "http://*/*",
+	//使扩展在用户打开浏览器之前就运行
+	"background"
+  ],
+  "content_security_policy":"script-src 'self' http://jinnianshilongnian.iteye.com/*; object-src 'self'",
+  "content_scripts": [{
+  
+       "matches": [
+	   "file://*",
+	   "http://*/*",
+	   "https://*/*",
+	   "*://*.iteye.com/*",
+	   "*://*.csdn.net/*",
+	   "http://*.aa.com/*",
+	   "https://*.bb.net/*"
+	   ],   
+       "js": ["work.js"],   
+       "run_at": "document_end"//,  
+      // "all_frames": true
+  }],
+  "background": {
+        "scripts": [
+            "background.js"
+        ]
+    }
+}
